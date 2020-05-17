@@ -1,11 +1,12 @@
-#include "logicsim.h"
+#include "node.h"
 #include <iostream>
 using namespace std;
 
 int main()
 {
     Node electro;
-    electro.defineNode(OFF, 10);
-    electro.printInfo();
+    electro.set_state(ON);
+    electro.set_id(10);
+    electro.print_info();
     return 0;
 }
