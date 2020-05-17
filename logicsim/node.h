@@ -11,6 +11,8 @@ class Node
     int m_id = 0;    
 
     public:
+    node_state get_state();
+    int get_id();
     void set_state(const node_state & state);
     void set_id(const int & id);
     void print_info();

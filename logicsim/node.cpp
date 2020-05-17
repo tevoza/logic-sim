@@ -27,3 +27,13 @@ void Node::print_info()
             break;
     }
 }
+
+Node::node_state Node::get_state()
+{
+    return this->m_state;
+}
+
+int Node::get_id()
+{
+    return this->m_id;
+}
