@@ -9,19 +9,17 @@ int main()
     Input switch1;
     
     net1.define_node(1, Node::node_state::OFF);
-    net1.set_state(Node::node_state::ON);
-    net1.set_id(1);
     net1.print_info();
 
-
-    net2.set_state(Node::node_state::UNDEFINED);
-    net2.set_id(2);
+    net2.define_node(2, Node::node_state::ON);
     net2.print_info();
 
-
-    switch1.set_state(Node::node_state::UNDEFINED);
+    switch1.define_node(3, Node::node_state::ON);;
     switch1.set_id(3);
+
     switch1.add_output(&net1);
+    switch1.add_output(&net2);
+
     switch1.input_list();
     return 0;
 }
