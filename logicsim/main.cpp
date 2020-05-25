@@ -1,11 +1,12 @@
 #include "input.h"
 #include "node.h"
+#include "net.h"
 #include <iostream>
 using namespace std;
 
 int main()
 {
-    Node net1, net2;
+    Net net1, net2;
     Input switch1;
     
     net1.define_node(1, Node::node_state::OFF);
@@ -20,6 +21,6 @@ int main()
     switch1.add_output(&net1);
     switch1.add_output(&net2);
 
-    switch1.input_list();
+    switch1.print_info();
     return 0;
 }

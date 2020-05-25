@@ -1,7 +1,7 @@
-#include "input.h"
+#include "net.h"
 #include <iostream>
 
-bool Input::add_output(Node *out_node)
+bool Net::add_output(Node *out_node)
 {
     //check if node already set as output
     bool nodeExists = false;
@@ -26,7 +26,7 @@ bool Input::add_output(Node *out_node)
     }
 }
 
-bool Input::rem_output(Node *out_node)
+bool Net::rem_output(Node *out_node)
 {
     bool nodeExists = false;
     int nodeID = -1;
@@ -53,9 +53,61 @@ bool Input::rem_output(Node *out_node)
     }
 }
 
-void Input::print_info()
+bool Net::add_input(Node *in_node)
+{    
+    //check if node already set as input
+    bool nodeExists = false;
+    int i=0;
+    while((i < m_inputs.size()) && (nodeExists == false))
+    {
+        if (in_node == m_inputs[i])
+        {
+            nodeExists = true;
+        }
+        i++;
+    }
+    
+    if (nodeExists == false)
+    {
+        m_inputs.push_back(in_node);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool Net::rem_input(Node *in_node)
 {
-    std::cout << "[NODE " << this->get_id() << "](INPUT)\n STATE: ";
+    bool nodeExists = false;
+    int nodeID = -1;
+    //check if node doesn't exist and find ID of deletion query
+    int i=0;
+    while((i < m_inputs.size()) && (nodeExists == false))
+    {
+        if (in_node == m_inputs[i])
+        {
+            nodeExists = true;
+            nodeID = i;
+        }
+        i++;
+    }
+    
+    if (nodeExists == true)
+    {
+        m_inputs.erase(m_inputs.begin()+nodeID);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+void Net::print_info()
+{
+    std::cout << "[NODE " << this->get_id() << "](NET)\n STATE: ";
     switch(this->get_state())
     {
         case node_state::UNDEFINED:
@@ -69,6 +121,13 @@ void Input::print_info()
             break;
     }
     
+    std::cout << " INPUTS: ";
+    for (int i = 0; i<m_inputs.size(); i++)
+    {
+        std::cout << (m_inputs[i]->get_id()) << ", ";
+    }
+    std::cout << std::endl;   
+
     std::cout << " OUTPUTS: ";
     for (int i = 0; i<m_outputs.size(); i++)
     {

@@ -10,9 +10,9 @@ class Input : public Node
     std::vector<Node*> m_outputs;
 
     public:
-    void add_output(Node *out_node);
-    void rem_output(Node *out_node);
-    void input_list();
+    bool add_output(Node *out_node);
+    bool rem_output(Node *out_node);
+    void print_info();
 };
 
 #endif //__INPUT_H_INCLUDED__

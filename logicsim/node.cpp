@@ -19,7 +19,7 @@ void Node::define_node(const int& id,const node_state& state)
 
 void Node::print_info()
 {
-    std::cout << "[NODE " << this->m_id << "]()\n CURRENTLY IN STATE: ";
+    std::cout << "[NODE " << this->m_id << "](NODE)\n STATE: ";
     switch(this->m_state)
     {
         case node_state::UNDEFINED:
