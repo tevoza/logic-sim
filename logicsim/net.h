@@ -16,6 +16,7 @@ class Net : public Node
     bool rem_output(Node *out_node);
     bool add_input(Node *in_node);
     bool rem_input(Node *in_node);
+    bool calc_state();
     void print_info();
 };
 

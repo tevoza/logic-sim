@@ -105,6 +105,32 @@ bool Net::rem_input(Node *in_node)
     }
 }
 
+bool Net::calc_state()
+{ 
+    bool onFound = false; //input with "ON" state
+    for (int i = 0; i<m_inputs.size(); i++)
+    {
+        switch(m_inputs[i]->get_state())
+        {
+            case node_state::UNDEFINED:
+                std::cout<<"Calculating status from unresolved input ("<<m_inputs[i]->get_id()<< ")" <<std::endl;
+                break;
+            case node_state::ON:
+                onFound = true;
+                this->set_state(node_state::ON);
+                break;
+        }
+    }
+    if (onFound == true)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 void Net::print_info()
 {
     std::cout << "[NODE " << this->get_id() << "](NET)\n STATE: ";
@@ -134,5 +160,6 @@ void Net::print_info()
         std::cout << (m_outputs[i]->get_id()) << ", ";
     }
     
+    std::cout << std::endl;
     std::cout << std::endl;
 }
