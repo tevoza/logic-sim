@@ -7,17 +7,12 @@
 //A net can be thought of as a wire, or points all "electrically" connected
 class Net : public Node
 {
-    private:
-    std::vector<Node*> m_outputs;
-    std::vector<Node*> m_inputs;
-
     public:
-    bool add_output(Node *out_node);
-    bool rem_output(Node *out_node);
-    bool add_input(Node *in_node);
-    bool rem_input(Node *in_node);
+    Net()
+    {
+        MAXINPUTS=-1; 
+        STR_NODETYPE = "NET";
+    }
     bool calc_state();
-    void print_info();
 };
-
 #endif //__NET_H_INCLUDED__
