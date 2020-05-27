@@ -1,6 +1,11 @@
 #include "node.h"
 #include <iostream>
 
+void Node::set_name(const char* name)
+{
+    m_name = name;
+}
+
 void Node::set_state(const node_state& state)
 {
     this->m_state = state;
@@ -11,9 +16,10 @@ void Node::set_id(const int& id)
     this->m_id = id;
 }
 
-void Node::define_node(const int& id,const node_state& state)
+void Node::define_node(const int& id, const char* name, const node_state& state)
 {
     this->m_id = id;
+    this->m_name = name;
     this->m_state = state;
 }
 
@@ -27,9 +33,15 @@ int Node::get_id()
     return this->m_id;
 }
 
+std::string Node::get_name()
+{
+    return this->m_name;
+}
+
 void Node::print_info()
 {    
-    std::cout << "[NODE " << this->get_id() << "]("<<STR_NODETYPE <<")\n STATE: ";
+    std::cout << "[" << this->get_id() << "]["<<STR_NODETYPE <<"] "<<m_name;
+    std::cout <<"\n STATE: ";
     switch(this->get_state())
     {
         case node_state::UNDEFINED:
@@ -46,14 +58,14 @@ void Node::print_info()
     std::cout << " INPUTS("<<m_inputs.size()<<"): ";
     for (int i = 0; i<m_inputs.size(); i++)
     {
-        std::cout << (m_inputs[i]->get_id()) << ", ";
+        std::cout <<(m_inputs[i]->get_name())<<"("<< (m_inputs[i]->get_id()) << "), ";
     }
     std::cout << std::endl;   
 
     std::cout << " OUTPUTS("<<m_outputs.size()<<"): ";
     for (int i = 0; i<m_outputs.size(); i++)
     {
-        std::cout << (m_outputs[i]->get_id()) << ", ";
+        std::cout <<(m_outputs[i]->get_name())<<"("<< (m_outputs[i]->get_id()) << "), ";
     }
     
     std::cout << std::endl << std::endl;
