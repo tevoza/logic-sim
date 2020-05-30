@@ -1,35 +1,27 @@
-#include "node.h"
-#include "net.h"
-#include "input.h"
+#include "circuit.h"
+
 #include <iostream>
 using namespace std;
 
 int main()
 {
-    Input input1, input2;
-    Net net1, net2 ;
+    Circuit Adder;
+    Adder.add_input("IN_A", Node::node_state::ON);
+    Adder.add_input("IN_B", Node::node_state::ON);
+    Adder.add_net("NET_A");
+    Adder.add_net("NET_B");
+    Adder.add_and("AND_CarryOut");
+    Adder.add_xor("XOR_Sum");
 
-    input1.define_node(1, "INPUT A", Node::node_state::ON);
-    input2.define_node(2, "INPUT B", Node::node_state::OFF);
-    net1.define_node(3, "NET 1", Node::node_state::UNDEFINED);
-    net2.define_node(4, "NET 2", Node::node_state::UNDEFINED);
-
-    net1.add_input(&input1);
-    net2.add_input(&input2);
-
-    input1.print_info();
-    input2.print_info();
-    net1.print_info();
-    net2.print_info();
+    Adder.connect_nodes(Adder.get_node("IN_A"), Adder.get_node("NET_A"));
+    Adder.connect_nodes(Adder.get_node("IN_B"), Adder.get_node("NET_B"));
+    Adder.connect_nodes(Adder.get_node("NET_A"), Adder.get_node("AND_CarryOut"));
+    Adder.connect_nodes(Adder.get_node("NET_A"), Adder.get_node("XOR_Sum"));
+    Adder.connect_nodes(Adder.get_node("NET_B"), Adder.get_node("AND_CarryOut"));
+    Adder.connect_nodes(Adder.get_node("NET_B"), Adder.get_node("XOR_Sum"));
     
-    net1.calc_state();
-    net2.calc_state();
-
-    input1.print_info();
-    input2.print_info();
-    net1.print_info();
-    net2.print_info();
-
-    std::cout<<"net size: "<<sizeof(Input)<<std::endl;
+    Adder.list_nodes();
+    Adder.calc_circuit();
+    Adder.list_nodes();
     return 0;
 }

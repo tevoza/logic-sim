@@ -35,7 +35,7 @@ class Node
     bool rem_output(Node *out_node);
     bool add_input(Node *in_node);
     bool rem_input(Node *in_node);
-    bool calc_state();
+    virtual bool calc_state() = 0;
 };
 
 #endif //__NODE_H_INCLUDED__
