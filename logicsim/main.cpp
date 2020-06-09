@@ -6,8 +6,8 @@ using namespace std;
 int main()
 {
     Circuit Adder;
-    Adder.add_input("IN_A", Node::node_state::ON);
-    Adder.add_input("IN_B", Node::node_state::ON);
+    Adder.add_input("IN_A", Node::node_state::OFF);
+    Adder.add_input("IN_B", Node::node_state::OFF);
     Adder.add_net("NET_A");
     Adder.add_net("NET_B");
     Adder.add_and("AND_CarryOut");
