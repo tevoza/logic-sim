@@ -7,7 +7,7 @@ class And : public Node
 {
 public:
     And();
-
+    bool calc_state();
     QRectF boundingRect() const;//coords around obj
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);//draw object
 

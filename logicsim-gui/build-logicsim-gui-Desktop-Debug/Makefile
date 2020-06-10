@@ -705,7 +705,9 @@ compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp
 moc_mainwindow.cpp: ../logicsim-gui/mainwindow.h \
+		../logicsim-gui/net.h \
 		../logicsim-gui/node.h \
+		../logicsim-gui/and.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include /home/adam/Projects/logic-sim/logicsim-gui/build-logicsim-gui-Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/adam/Projects/logic-sim/logicsim-gui/logicsim-gui -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I. -I/usr/include/c++/10.1.0 -I/usr/include/c++/10.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed -I/usr/include ../logicsim-gui/mainwindow.h -o moc_mainwindow.cpp
@@ -736,11 +738,15 @@ and.o: ../logicsim-gui/and.cpp ../logicsim-gui/and.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o and.o ../logicsim-gui/and.cpp
 
 main.o: ../logicsim-gui/main.cpp ../logicsim-gui/mainwindow.h \
-		../logicsim-gui/node.h
+		../logicsim-gui/net.h \
+		../logicsim-gui/node.h \
+		../logicsim-gui/and.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../logicsim-gui/main.cpp
 
 mainwindow.o: ../logicsim-gui/mainwindow.cpp ../logicsim-gui/mainwindow.h \
+		../logicsim-gui/net.h \
 		../logicsim-gui/node.h \
+		../logicsim-gui/and.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../logicsim-gui/mainwindow.cpp
 

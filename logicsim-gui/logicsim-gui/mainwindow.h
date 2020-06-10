@@ -28,7 +28,7 @@ private:
     Ui::MainWindow *ui;
 
     QGraphicsScene *scene;
-    QVector<Node*> my_nodes;
+    std::vector<Node*> my_nodes;
 
 };
 #endif // MAINWINDOW_H

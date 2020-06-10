@@ -21,13 +21,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::addAnd()
 {
-    my_nodes.append(new And());
-    scene->addItem(my_nodes.last());
+    my_nodes.push_back(new And());
+    scene->addItem(my_nodes.back());
 }
 
 void MainWindow::addNet()
 {
-    my_nodes.append(new Net());
-    scene->addItem(my_nodes.last());
+    my_nodes.push_back(new Net());
+    scene->addItem(my_nodes.back());
 }
 
