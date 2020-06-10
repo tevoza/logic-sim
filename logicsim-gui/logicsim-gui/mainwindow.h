@@ -24,7 +24,6 @@ public:
     void addAnd();
     void addNet();
 
-
 private:
     Ui::MainWindow *ui;
 
