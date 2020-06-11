@@ -6,6 +6,7 @@ And::And(const int& id)
     this->set_id(id);
     MAXINPUTS=-1;
     STR_NODETYPE = "AND";
+
 }
 
 bool And::calc_state()
@@ -52,6 +53,7 @@ QRectF And::boundingRect() const
 
 void And::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    QString id = "AND"+QString::number(get_id());
     QRectF rec = boundingRect();
     QBrush brush(Qt::blue);
 
@@ -63,8 +65,12 @@ void And::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidg
     {
         brush.setColor(Qt::green);
     }
+
+    //painter->drawText(0,210,this->STR_NODETYPE);
+    painter->drawText(0,-8,"INPUT: 0, 1");
     painter->fillRect(rec,brush);
     painter->drawRect(rec);
+    painter->drawText(0,110,id);
 }
 
 void And::mousePressEvent(QGraphicsSceneMouseEvent *event)

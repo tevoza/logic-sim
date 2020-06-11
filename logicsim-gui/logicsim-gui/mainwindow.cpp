@@ -94,7 +94,9 @@ void MainWindow::addNet()
 {
     nodeId++;
     my_nodes.push_back(new Net(nodeId));
+
     scene->addItem(my_nodes.back());
+
     my_nodes.back()->print_info();
     refreshGUI();
 }
@@ -113,4 +115,5 @@ Node *MainWindow::getNode(const int &id)
     }
     return nullptr;
 }
+
 
