@@ -1,6 +1,6 @@
-# logic-sim
-reii 313 practical project - gui logic gate simulator
-Adam Coetzee - 29982995
+# logic-sim -reii 313 practical project - gui logic gate simulator
+
+Adam Coetzee - 29982995  
 Thato Tau    - 31542115
 
 ---
