@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "input.h"
 #include "net.h"
 #include "and.h"
 #include <QMainWindow>
@@ -28,6 +29,7 @@ public:
 
     void addAnd();
     void addNet();
+    void addInput();
 
 private:
     Node* getNode(const int& id);

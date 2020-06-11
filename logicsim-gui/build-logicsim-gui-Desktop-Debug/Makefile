@@ -53,11 +53,13 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../logicsim-gui/and.cpp \
+		../logicsim-gui/input.cpp \
 		../logicsim-gui/main.cpp \
 		../logicsim-gui/mainwindow.cpp \
 		../logicsim-gui/net.cpp \
 		../logicsim-gui/node.cpp moc_mainwindow.cpp
 OBJECTS       = and.o \
+		input.o \
 		main.o \
 		mainwindow.o \
 		net.o \
@@ -253,9 +255,11 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/features/yacc.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
 		../logicsim-gui/logicsim-gui.pro ../logicsim-gui/and.h \
+		../logicsim-gui/input.h \
 		../logicsim-gui/mainwindow.h \
 		../logicsim-gui/net.h \
 		../logicsim-gui/node.h ../logicsim-gui/and.cpp \
+		../logicsim-gui/input.cpp \
 		../logicsim-gui/main.cpp \
 		../logicsim-gui/mainwindow.cpp \
 		../logicsim-gui/net.cpp \
@@ -667,8 +671,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../logicsim-gui/and.h ../logicsim-gui/mainwindow.h ../logicsim-gui/net.h ../logicsim-gui/node.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../logicsim-gui/and.cpp ../logicsim-gui/main.cpp ../logicsim-gui/mainwindow.cpp ../logicsim-gui/net.cpp ../logicsim-gui/node.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../logicsim-gui/and.h ../logicsim-gui/input.h ../logicsim-gui/mainwindow.h ../logicsim-gui/net.h ../logicsim-gui/node.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../logicsim-gui/and.cpp ../logicsim-gui/input.cpp ../logicsim-gui/main.cpp ../logicsim-gui/mainwindow.cpp ../logicsim-gui/net.cpp ../logicsim-gui/node.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../logicsim-gui/mainwindow.ui $(DISTDIR)/
 
 
@@ -736,6 +740,10 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 and.o: ../logicsim-gui/and.cpp ../logicsim-gui/and.h \
 		../logicsim-gui/node.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o and.o ../logicsim-gui/and.cpp
+
+input.o: ../logicsim-gui/input.cpp ../logicsim-gui/input.h \
+		../logicsim-gui/node.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o input.o ../logicsim-gui/input.cpp
 
 main.o: ../logicsim-gui/main.cpp ../logicsim-gui/mainwindow.h \
 		../logicsim-gui/net.h \

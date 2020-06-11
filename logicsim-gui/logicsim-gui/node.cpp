@@ -222,4 +222,45 @@ bool Node::rem_input(Node *in_node)
     }
 }
 
+QRectF Node::boundingRect() const
+{
+    return QRectF(0,0,100,100);
+}
 
+void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    QRectF rec = boundingRect();
+    QBrush brush(Qt::blue);
+
+    QString info = "["+QString::number(this->get_id())+"]["+QString::fromStdString(STR_NODETYPE)+"] " +QString::fromStdString(this->get_name()) ;
+    switch(this->m_state)
+    {
+        case node_state::UNDEFINED:
+            brush.setColor(Qt::yellow);
+            break;
+        case node_state::OFF:
+            brush.setColor(Qt::black);
+            break;
+        case node_state::ON:
+            brush.setColor(Qt::green);
+            break;
+    }
+
+    painter->fillRect(rec,brush);
+    painter->drawText(0,-8,info);
+    painter->drawRect(rec);
+}
+
+void Node::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    m_pressed = true;
+    update();
+    QGraphicsItem::mousePressEvent(event);
+}
+
+void Node::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    m_pressed = false;
+    update();
+    QGraphicsItem::mouseReleaseEvent(event);
+}
