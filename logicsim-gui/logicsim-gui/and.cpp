@@ -12,7 +12,7 @@ bool And::calc_state()
 {
     if (m_inputs.size()<2)
     {
-        std::cout<<"Error: "<<m_name<<"("<<this->get_id()<<")requires at least 2 inputs."<<std::endl;
+        std::cout<<"Warning: "<<m_name<<"("<<this->get_id()<<")has less than 2 input."<<std::endl;
         this->set_state(node_state::OFF);
         return false;
     }

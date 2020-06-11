@@ -1,12 +1,14 @@
 # logic-sim
 reii 313 practical project - gui logic gate simulator
----
-## Todo
-* Implement console classes for gui use
-* Way of displaying logs for debugging
-* void drawNodeLine(Node *src, Node *dest) - draw a line between 2 nodes?
-* Add form for editing nodes
+Adam Coetzee - 29982995
+Thato Tau    - 31542115
 
 ---
-## State calculation logic
-Generally, each node assesses the states of its input nodes to determine its own state, according to a set of rules. 
+## 
+
+---
+## Node calculation logic
+Generally, each node assesses the states of its input nodes to determine its own state, according to a set of rules.
+If a node contains an UNDEFINED input, but its state can be conclusively determined with other available inputs,
+it will still be calculateable.
+*

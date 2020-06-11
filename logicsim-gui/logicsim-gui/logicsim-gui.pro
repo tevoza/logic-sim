@@ -21,14 +21,16 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     net.cpp \
-    node.cpp
+    node.cpp \
+    xor.cpp
 
 HEADERS += \
     and.h \
     input.h \
     mainwindow.h \
     net.h \
-    node.h
+    node.h \
+    xor.h
 
 FORMS += \
     mainwindow.ui

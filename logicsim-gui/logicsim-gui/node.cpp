@@ -2,6 +2,7 @@
 
 Node::Node()
 {
+    m_visits = 0;
     m_pressed = false;
     setFlag(ItemIsMovable);
 }
@@ -14,6 +15,7 @@ void Node::set_name(const char *name)
 void Node::set_state(const Node::node_state &state)
 {
     this->m_state = state;
+    update();
 }
 
 void Node::set_id(const int &id)
@@ -48,6 +50,7 @@ std::string Node::get_type_name()
     return this->STR_NODETYPE;
 }
 
+//return state enum as string for printing purposes.
 std::string Node::mstate_to_string(node_state state)
 {
     std::string res;
@@ -169,7 +172,7 @@ bool Node::add_input(Node *in_node)
         }
     }
 
-    //check if node already set as input
+    //check if node already set as input - Duplication prevention
     bool nodeExists = false;
     unsigned int i=0;
     while((i < m_inputs.size()) && (nodeExists == false))

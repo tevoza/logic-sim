@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "xor.h"
 #include "input.h"
 #include "net.h"
 #include "and.h"
@@ -8,6 +9,7 @@
 #include <QtCore>
 #include <QtGui>
 #include <QVector>
+#include <queue>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,11 +27,13 @@ public:
     bool dispNodeInfo();
     bool setNodeName();
     void refreshGUI();
-    void connectNodes();
 
+    void connectNodes();
     void addAnd();
     void addNet();
+    void addXor();
     void addInput();
+    void calc_circuit();
 
 private:
     Node* getNode(const int& id);

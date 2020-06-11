@@ -31,7 +31,7 @@ public:
     QPushButton *pushButtonAddInput;
     QPushButton *pushButtonAddWire;
     QPushButton *pushButtonAddAND;
-    QPushButton *pushButton;
+    QPushButton *pushButtonAddXOR;
     QGraphicsView *graphicsView;
     QPushButton *pushButtonClose;
     QComboBox *comboBoxSource;
@@ -42,6 +42,7 @@ public:
     QLabel *label;
     QPushButton *pushButtonSetName;
     QTextBrowser *textBrowser;
+    QPushButton *pushButtonCalculateCircuit;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -61,15 +62,15 @@ public:
         pushButtonAddAND = new QPushButton(centralwidget);
         pushButtonAddAND->setObjectName(QString::fromUtf8("pushButtonAddAND"));
         pushButtonAddAND->setGeometry(QRect(180, 0, 90, 32));
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(270, 0, 90, 32));
+        pushButtonAddXOR = new QPushButton(centralwidget);
+        pushButtonAddXOR->setObjectName(QString::fromUtf8("pushButtonAddXOR"));
+        pushButtonAddXOR->setGeometry(QRect(270, 0, 90, 32));
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         graphicsView->setGeometry(QRect(0, 30, 831, 431));
         pushButtonClose = new QPushButton(centralwidget);
         pushButtonClose->setObjectName(QString::fromUtf8("pushButtonClose"));
-        pushButtonClose->setGeometry(QRect(360, 0, 90, 32));
+        pushButtonClose->setGeometry(QRect(470, 0, 90, 32));
         comboBoxSource = new QComboBox(centralwidget);
         comboBoxSource->setObjectName(QString::fromUtf8("comboBoxSource"));
         comboBoxSource->setGeometry(QRect(20, 480, 211, 41));
@@ -95,6 +96,9 @@ public:
         textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
         textBrowser->setGeometry(QRect(20, 580, 256, 192));
         textBrowser->setReadOnly(true);
+        pushButtonCalculateCircuit = new QPushButton(centralwidget);
+        pushButtonCalculateCircuit->setObjectName(QString::fromUtf8("pushButtonCalculateCircuit"));
+        pushButtonCalculateCircuit->setGeometry(QRect(360, 0, 111, 32));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -119,7 +123,7 @@ public:
         pushButtonAddInput->setText(QCoreApplication::translate("MainWindow", "Input", nullptr));
         pushButtonAddWire->setText(QCoreApplication::translate("MainWindow", "Wire", nullptr));
         pushButtonAddAND->setText(QCoreApplication::translate("MainWindow", "AND", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "XOR", nullptr));
+        pushButtonAddXOR->setText(QCoreApplication::translate("MainWindow", "XOR", nullptr));
         pushButtonClose->setText(QCoreApplication::translate("MainWindow", "Close", nullptr));
         pushButtonConnectNodes->setText(QCoreApplication::translate("MainWindow", "->", nullptr));
         pushButton_3->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
@@ -130,6 +134,7 @@ public:
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cantarell'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">lll</p></body></html>", nullptr));
+        pushButtonCalculateCircuit->setText(QCoreApplication::translate("MainWindow", "Calculate Circuit", nullptr));
     } // retranslateUi
 
 };

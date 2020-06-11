@@ -4,7 +4,7 @@ Input::Input(const int& id)
 {
     this->set_state(node_state::OFF);
     this->set_id(id);
-    MAXINPUTS=-1;
+    MAXINPUTS=0;//ACCEPTS NO INPUTS
     STR_NODETYPE = "INPUT";
 }
 

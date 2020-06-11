@@ -57,13 +57,15 @@ SOURCES       = ../logicsim-gui/and.cpp \
 		../logicsim-gui/main.cpp \
 		../logicsim-gui/mainwindow.cpp \
 		../logicsim-gui/net.cpp \
-		../logicsim-gui/node.cpp moc_mainwindow.cpp
+		../logicsim-gui/node.cpp \
+		../logicsim-gui/xor.cpp moc_mainwindow.cpp
 OBJECTS       = and.o \
 		input.o \
 		main.o \
 		mainwindow.o \
 		net.o \
 		node.o \
+		xor.o \
 		moc_mainwindow.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
@@ -258,12 +260,14 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		../logicsim-gui/input.h \
 		../logicsim-gui/mainwindow.h \
 		../logicsim-gui/net.h \
-		../logicsim-gui/node.h ../logicsim-gui/and.cpp \
+		../logicsim-gui/node.h \
+		../logicsim-gui/xor.h ../logicsim-gui/and.cpp \
 		../logicsim-gui/input.cpp \
 		../logicsim-gui/main.cpp \
 		../logicsim-gui/mainwindow.cpp \
 		../logicsim-gui/net.cpp \
-		../logicsim-gui/node.cpp
+		../logicsim-gui/node.cpp \
+		../logicsim-gui/xor.cpp
 QMAKE_TARGET  = logicsim-gui
 DESTDIR       = 
 TARGET        = logicsim-gui
@@ -671,8 +675,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../logicsim-gui/and.h ../logicsim-gui/input.h ../logicsim-gui/mainwindow.h ../logicsim-gui/net.h ../logicsim-gui/node.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../logicsim-gui/and.cpp ../logicsim-gui/input.cpp ../logicsim-gui/main.cpp ../logicsim-gui/mainwindow.cpp ../logicsim-gui/net.cpp ../logicsim-gui/node.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../logicsim-gui/and.h ../logicsim-gui/input.h ../logicsim-gui/mainwindow.h ../logicsim-gui/net.h ../logicsim-gui/node.h ../logicsim-gui/xor.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../logicsim-gui/and.cpp ../logicsim-gui/input.cpp ../logicsim-gui/main.cpp ../logicsim-gui/mainwindow.cpp ../logicsim-gui/net.cpp ../logicsim-gui/node.cpp ../logicsim-gui/xor.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../logicsim-gui/mainwindow.ui $(DISTDIR)/
 
 
@@ -709,8 +713,9 @@ compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp
 moc_mainwindow.cpp: ../logicsim-gui/mainwindow.h \
-		../logicsim-gui/net.h \
+		../logicsim-gui/input.h \
 		../logicsim-gui/node.h \
+		../logicsim-gui/net.h \
 		../logicsim-gui/and.h \
 		moc_predefs.h \
 		/usr/bin/moc
@@ -746,14 +751,16 @@ input.o: ../logicsim-gui/input.cpp ../logicsim-gui/input.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o input.o ../logicsim-gui/input.cpp
 
 main.o: ../logicsim-gui/main.cpp ../logicsim-gui/mainwindow.h \
-		../logicsim-gui/net.h \
+		../logicsim-gui/input.h \
 		../logicsim-gui/node.h \
+		../logicsim-gui/net.h \
 		../logicsim-gui/and.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../logicsim-gui/main.cpp
 
 mainwindow.o: ../logicsim-gui/mainwindow.cpp ../logicsim-gui/mainwindow.h \
-		../logicsim-gui/net.h \
+		../logicsim-gui/input.h \
 		../logicsim-gui/node.h \
+		../logicsim-gui/net.h \
 		../logicsim-gui/and.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../logicsim-gui/mainwindow.cpp
@@ -764,6 +771,10 @@ net.o: ../logicsim-gui/net.cpp ../logicsim-gui/net.h \
 
 node.o: ../logicsim-gui/node.cpp ../logicsim-gui/node.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o node.o ../logicsim-gui/node.cpp
+
+xor.o: ../logicsim-gui/xor.cpp ../logicsim-gui/xor.h \
+		../logicsim-gui/node.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o xor.o ../logicsim-gui/xor.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
