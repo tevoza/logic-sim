@@ -1,8 +1,9 @@
 #include "and.h"
 
-And::And()
+And::And(const int& id)
 {
     this->set_state(node_state::UNDEFINED);
+    this->set_id(id);
     MAXINPUTS=-1;
     STR_NODETYPE = "AND";
 }

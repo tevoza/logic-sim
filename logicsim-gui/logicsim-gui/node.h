@@ -32,6 +32,8 @@ public:
     node_state get_state();
     int get_id();
     std::string get_name();
+    std::string get_type_name();
+    std::string mstate_to_string(node_state state);
     void print_info();
 
     bool add_output(Node *out_node);

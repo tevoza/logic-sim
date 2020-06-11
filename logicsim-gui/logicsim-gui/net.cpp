@@ -1,8 +1,9 @@
 #include "net.h"
 
-Net::Net()
+Net::Net(const int &id)
 {
     this->set_state(node_state::UNDEFINED);
+    this->set_id(id);
     MAXINPUTS=-1;
     STR_NODETYPE = "NET";
 }
@@ -48,7 +49,7 @@ bool Net::calc_state()
 
 QRectF Net::boundingRect() const
 {
-    return QRectF(0,0,100,100);
+    return QRectF(0,0,50,50);
 }
 
 void Net::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -80,9 +81,4 @@ void Net::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     m_pressed = false;
     update();
     QGraphicsItem::mouseReleaseEvent(event);
-}
-
-void Net::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
-{
-
 }

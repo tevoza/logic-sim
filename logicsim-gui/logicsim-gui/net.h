@@ -6,7 +6,7 @@
 class Net : public Node
 {
 public:
-    Net();
+    Net(const int& id);
     bool calc_state();
 
     QRectF boundingRect() const;//coords around obj
@@ -14,7 +14,7 @@ public:
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
+
 };
 
 #endif // NET_H

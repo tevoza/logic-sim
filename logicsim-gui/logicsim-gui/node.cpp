@@ -43,23 +43,35 @@ std::string Node::get_name()
     return this->m_name;
 }
 
+std::string Node::get_type_name()
+{
+    return this->STR_NODETYPE;
+}
+
+std::string Node::mstate_to_string(node_state state)
+{
+    std::string res;
+    switch(state)
+    {
+        case node_state::UNDEFINED:
+            res = "UNDEFINED";
+            break;
+        case node_state::OFF:
+            res = "OFF";
+            break;
+        case node_state::ON:
+            res = "ON";
+            break;
+    }
+    return res;
+}
+
 void Node::print_info()
 {
 
     std::cout << "[" << this->get_id() << "]["<<STR_NODETYPE <<"] "<<m_name;
-    std::cout <<"\n STATE: ";
-    switch(this->get_state())
-    {
-        case node_state::UNDEFINED:
-            std::cout << "UNDEFINED" << std::endl;
-            break;
-        case node_state::OFF:
-            std::cout << "OFF" << std::endl;
-            break;
-        case node_state::ON:
-            std::cout << "ON" << std::endl;
-            break;
-    }
+    std::cout <<"\n STATE: "<<mstate_to_string(this->get_state());
+
 
     std::cout << " INPUTS("<<m_inputs.size()<<"): ";
     for (unsigned int i = 0; i<m_inputs.size(); i++)
@@ -195,6 +207,5 @@ bool Node::rem_input(Node *in_node)
         return false;
     }
 }
-
 
 
