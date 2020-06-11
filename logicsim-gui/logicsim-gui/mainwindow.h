@@ -21,9 +21,11 @@ public:
     ~MainWindow();
 
     public slots:
-    void dispNodeInfo();
+    bool dispNodeInfo();
     bool setNodeName();
     void refreshGUI();
+    void connectNodes();
+
     void addAnd();
     void addNet();
 

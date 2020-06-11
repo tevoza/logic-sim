@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButtonAddWire,SIGNAL(clicked()), this, SLOT(addNet()));
 
     connect(ui->pushButtonSetName,SIGNAL(clicked()), this, SLOT(setNodeName()));
-
-
+    connect(ui->comboBoxSource,SIGNAL(currentIndexChanged(QString)), this, SLOT(dispNodeInfo()));
+    connect(ui->pushButtonConnectNodes,SIGNAL(clicked()),this, SLOT(connectNodes()));
 }
 
 MainWindow::~MainWindow()
@@ -23,9 +23,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::dispNodeInfo()
+bool MainWindow::dispNodeInfo()
 {
-
+    qDebug() << "changed!";
+    QString namestring = ui->comboBoxSource->currentText();
+    int id = fetchNodeId(namestring);
+    Node *node = getNode(id);
+    if (node == nullptr)
+    {
+        qDebug() << "Error, no id found matching node";
+        return false;
+    }
+    QString info = QString::fromStdString(node->print_info());
+    ui->textBrowser->setPlainText(info);
 }
 
 bool MainWindow::setNodeName()
@@ -67,18 +77,39 @@ void MainWindow::refreshGUI()
     ui->comboBoxDest->clear();
     ui->textBrowser->clear();
     QString namestring = ui->comboBoxSource->currentText();
-    int id = fetchNodeId(namestring);
+    //int id = fetchNodeId(namestring);
 
     for (unsigned int i = 0 ; i < my_nodes.size(); i++)
     {
         QString item = "["+QString::number(my_nodes[i]->get_id())+"]";
         item += "["+QString::fromStdString(my_nodes[i]->get_type_name())+"] ";
-        item += QString::fromStdString(my_nodes[i]->get_name());
-        item += QString::fromStdString(my_nodes[i]->mstate_to_string(my_nodes[i]->get_state()));
+        item += QString::fromStdString(my_nodes[i]->get_name())+" (";
+        item += QString::fromStdString(my_nodes[i]->mstate_to_string(my_nodes[i]->get_state()))+")";
         ui->comboBoxSource->addItem(item);
         ui->comboBoxDest->addItem(item);
     }
     ui->lineEditName->setText("lol");
+    this->dispNodeInfo();
+}
+
+void MainWindow::connectNodes()
+{
+    int srcid = fetchNodeId(ui->comboBoxSource->currentText());
+    int destid = fetchNodeId(ui->comboBoxDest->currentText());
+    qDebug() << "attempting to connect "<<QString::number(srcid)<<" to "<<QString::number(destid);
+
+    Node *src = getNode(srcid);
+    Node *dest = getNode(destid);
+
+    if ((src->add_output(dest)) == false)
+    {
+        ui->textBrowser->setText(QString::number(srcid)+"falied to add output "+QString::number(destid));
+    }
+    if ((dest->add_input(src)) == false)
+    {
+        ui->textBrowser->setText(QString::number(destid)+"falied to add input "+QString::number(destid));
+    }
+    //reverse conn if failed later.
 }
 
 void MainWindow::addAnd()

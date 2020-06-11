@@ -35,7 +35,7 @@ public:
     QGraphicsView *graphicsView;
     QPushButton *pushButtonClose;
     QComboBox *comboBoxSource;
-    QPushButton *pushButton_2;
+    QPushButton *pushButtonConnectNodes;
     QComboBox *comboBoxDest;
     QPushButton *pushButton_3;
     QLineEdit *lineEditName;
@@ -73,9 +73,9 @@ public:
         comboBoxSource = new QComboBox(centralwidget);
         comboBoxSource->setObjectName(QString::fromUtf8("comboBoxSource"));
         comboBoxSource->setGeometry(QRect(20, 480, 211, 41));
-        pushButton_2 = new QPushButton(centralwidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(260, 470, 90, 32));
+        pushButtonConnectNodes = new QPushButton(centralwidget);
+        pushButtonConnectNodes->setObjectName(QString::fromUtf8("pushButtonConnectNodes"));
+        pushButtonConnectNodes->setGeometry(QRect(260, 470, 90, 32));
         comboBoxDest = new QComboBox(centralwidget);
         comboBoxDest->setObjectName(QString::fromUtf8("comboBoxDest"));
         comboBoxDest->setGeometry(QRect(370, 480, 211, 41));
@@ -121,7 +121,7 @@ public:
         pushButtonAddAND->setText(QCoreApplication::translate("MainWindow", "AND", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "XOR", nullptr));
         pushButtonClose->setText(QCoreApplication::translate("MainWindow", "Close", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "->", nullptr));
+        pushButtonConnectNodes->setText(QCoreApplication::translate("MainWindow", "->", nullptr));
         pushButton_3->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Name: ", nullptr));
         pushButtonSetName->setText(QCoreApplication::translate("MainWindow", "Set", nullptr));
@@ -129,23 +129,7 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cantarell'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">kk</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">k</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">kk</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">k</p>\n"
-"<"
-                        "p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">k</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">k</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">kkk</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">k</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">k</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">k</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">kk</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text"
-                        "-indent:0px;\">k</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">lll</p></body></html>", nullptr));
     } // retranslateUi
 
 };

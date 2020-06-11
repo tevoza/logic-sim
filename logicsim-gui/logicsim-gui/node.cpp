@@ -66,51 +66,58 @@ std::string Node::mstate_to_string(node_state state)
     return res;
 }
 
-void Node::print_info()
+std::string Node::print_info()
 {
+    std::string str = "";
 
-    std::cout << "[" << this->get_id() << "]["<<STR_NODETYPE <<"] "<<m_name;
-    std::cout <<"\n STATE: "<<mstate_to_string(this->get_state());
+    str += "["+std::to_string(this->get_id())+"]["+STR_NODETYPE+"] "+m_name;
+    str += "\n STATE: "+mstate_to_string(this->get_state());
+    str += "\n INPUTS("+std::to_string(m_inputs.size())+"): ";
 
-
-    std::cout << " INPUTS("<<m_inputs.size()<<"): ";
     for (unsigned int i = 0; i<m_inputs.size(); i++)
     {
-        std::cout <<(m_inputs[i]->get_name())<<"("<< (m_inputs[i]->get_id()) << "), ";
+        str += (m_inputs[i]->get_name())+"("+ std::to_string(m_inputs[i]->get_id()) + "), ";
     }
-    std::cout << std::endl;
 
-    std::cout << " OUTPUTS("<<m_outputs.size()<<"): ";
+    str += "\n OUTPUT("+std::to_string(m_outputs.size())+"): ";
     for (unsigned int i = 0; i<m_outputs.size(); i++)
     {
-        std::cout <<(m_outputs[i]->get_name())<<"("<< (m_outputs[i]->get_id()) << "), ";
+        str += (m_outputs[i]->get_name())+"("+ std::to_string(m_outputs[i]->get_id()) + "), ";
     }
 
-    std::cout << std::endl << std::endl;
+    std::cout <<str<<std::endl;
+    return str;
 }
 
 bool Node::add_output(Node *out_node)
 {
+    //check if node is self
+    if (this == out_node)
+    {
+        std::cout<<"Error: Cannot set self to output"<<std::endl;
+        return false;
+    }
+
     //check if node already set as output
-    bool nodeExists = false;
+    bool alreadySet = false;
     unsigned int i=0;
-    while((i < m_outputs.size()) && (nodeExists == false))
+    while((i < m_outputs.size()) && (alreadySet == false))
     {
         if (out_node == m_outputs[i])
         {
-            nodeExists = true;
+            alreadySet = true;
         }
         i++;
     }
 
-    if (nodeExists == false)
+    if (alreadySet == false)
     {
         m_outputs.push_back(out_node);
         return true;
     }
     else
     {
-        std::cout<<"Error: Node not found"<<std::endl;
+        std::cout<<"Error: Node already set"<<std::endl;
         return false;
     }
 }
@@ -145,6 +152,13 @@ bool Node::rem_output(Node *out_node)
 
 bool Node::add_input(Node *in_node)
 {
+    //check if self
+    if (this == in_node)
+    {
+        std::cout<<"Error: cannot add self as input"<<std::endl;
+        return false;
+    }
+
     //Check if reached limit cap
     if (MAXINPUTS != -1)//-1 implies unlimited inputs
     {
