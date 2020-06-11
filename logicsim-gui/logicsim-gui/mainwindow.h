@@ -21,14 +21,19 @@ public:
     ~MainWindow();
 
     public slots:
+    void dispNodeInfo();
+    bool setNodeName();
+    void refreshGUI();
     void addAnd();
     void addNet();
 
 private:
+    Node* getNode(const int& id);
+    int fetchNodeId(QString selected);
     Ui::MainWindow *ui;
 
     QGraphicsScene *scene;
     std::vector<Node*> my_nodes;
-
+    int nodeId = 0;
 };
 #endif // MAINWINDOW_H
