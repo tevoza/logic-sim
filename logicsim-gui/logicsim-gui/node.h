@@ -40,8 +40,11 @@ public:
     bool add_input(Node *in_node);
     bool rem_input(Node *in_node);
     virtual bool calc_state() = 0;
+    int m_visits = 0; //times visited when calculating
 
     //QT INTEGRATION
+private:
+    friend class MainWindow   ;
 public:
     bool m_pressed;
     QRectF boundingRect() const;//coords around obj
