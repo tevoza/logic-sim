@@ -44,39 +44,3 @@ bool And::calc_state()
         return true;
     }
 }
-
-QRectF And::boundingRect() const
-{
-    return QRectF(0,0,100,100);
-}
-
-void And::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-    QRectF rec = boundingRect();
-    QBrush brush(Qt::blue);
-
-    if (m_pressed)
-    {
-        brush.setColor(Qt::red);
-    }
-    else
-    {
-        brush.setColor(Qt::green);
-    }
-    painter->fillRect(rec,brush);
-    painter->drawRect(rec);
-}
-
-void And::mousePressEvent(QGraphicsSceneMouseEvent *event)
-{
-    m_pressed = true;
-    update();
-    QGraphicsItem::mousePressEvent(event);
-}
-
-void And::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
-{
-    m_pressed = false;
-    update();
-    QGraphicsItem::mouseReleaseEvent(event);
-}

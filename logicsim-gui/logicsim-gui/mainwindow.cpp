@@ -9,9 +9,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
-//    connect((mainWindow->toolBarButton)[0],SIGNAL(clicked()),this,SLOT(newFile()));
+
     connect(ui->pushButtonAddAND,SIGNAL(clicked()), this, SLOT(addAnd()));
     connect(ui->pushButtonAddWire,SIGNAL(clicked()), this, SLOT(addNet()));
+    connect(ui->pushButtonAddInput,SIGNAL(clicked()), this, SLOT(addInput()));
+
 
     connect(ui->pushButtonSetName,SIGNAL(clicked()), this, SLOT(setNodeName()));
     connect(ui->comboBoxSource,SIGNAL(currentIndexChanged(QString)), this, SLOT(dispNodeInfo()));
@@ -83,8 +85,8 @@ void MainWindow::refreshGUI()
     {
         QString item = "["+QString::number(my_nodes[i]->get_id())+"]";
         item += "["+QString::fromStdString(my_nodes[i]->get_type_name())+"] ";
-        item += QString::fromStdString(my_nodes[i]->get_name())+" (";
-        item += QString::fromStdString(my_nodes[i]->mstate_to_string(my_nodes[i]->get_state()))+")";
+        item += QString::fromStdString(my_nodes[i]->get_name());
+        //item += QString::fromStdString(my_nodes[i]->mstate_to_string(my_nodes[i]->get_state()))+")"; tmi
         ui->comboBoxSource->addItem(item);
         ui->comboBoxDest->addItem(item);
     }
@@ -125,6 +127,15 @@ void MainWindow::addNet()
 {
     nodeId++;
     my_nodes.push_back(new Net(nodeId));
+    scene->addItem(my_nodes.back());
+    my_nodes.back()->print_info();
+    refreshGUI();
+}
+
+void MainWindow::addInput()
+{
+    nodeId++;
+    my_nodes.push_back(new Input(nodeId));
     scene->addItem(my_nodes.back());
     my_nodes.back()->print_info();
     refreshGUI();

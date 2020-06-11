@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     and.cpp \
+    input.cpp \
     main.cpp \
     mainwindow.cpp \
     net.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
 
 HEADERS += \
     and.h \
+    input.h \
     mainwindow.h \
     net.h \
     node.h
