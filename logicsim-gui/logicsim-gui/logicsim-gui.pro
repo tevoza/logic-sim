@@ -20,16 +20,20 @@ SOURCES += \
     input.cpp \
     main.cpp \
     mainwindow.cpp \
+    nand.cpp \
     net.cpp \
     node.cpp \
+    or.cpp \
     xor.cpp
 
 HEADERS += \
     and.h \
     input.h \
     mainwindow.h \
+    nand.h \
     net.h \
     node.h \
+    or.h \
     xor.h
 
 FORMS += \

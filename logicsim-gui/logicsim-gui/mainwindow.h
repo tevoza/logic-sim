@@ -5,6 +5,8 @@
 #include "input.h"
 #include "net.h"
 #include "and.h"
+#include "nand.h"
+#include "or.h"
 #include <QMainWindow>
 #include <QtCore>
 #include <QtGui>
@@ -28,10 +30,15 @@ public:
     bool setNodeName();
     void refreshGUI();
 
+    void clear();
     void connectNodes();
+    void disconnectNodes();
+    void deleteNode();
     void addAnd();
+    void addNand();
     void addNet();
     void addXor();
+    void addOr();
     void addInput();
     void calc_circuit();
 

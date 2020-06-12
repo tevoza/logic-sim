@@ -14,18 +14,21 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButtonAddWire,SIGNAL(clicked()), this, SLOT(addNet()));
     connect(ui->pushButtonAddInput,SIGNAL(clicked()), this, SLOT(addInput()));
     connect(ui->pushButtonAddXOR, SIGNAL(clicked()), this, SLOT(addXor()));
+    connect(ui->pushButtonAddOR, SIGNAL(clicked()), this, SLOT(addOr()));
+    connect(ui->pushButtonAddNAND, SIGNAL(clicked()), this, SLOT(addNand()));
 
     connect(ui->pushButtonCalculateCircuit,SIGNAL(clicked()),this,SLOT(calc_circuit()));
     connect(ui->pushButtonSetName,SIGNAL(clicked()), this, SLOT(setNodeName()));
     connect(ui->comboBoxSource,SIGNAL(currentIndexChanged(QString)), this, SLOT(dispNodeInfo()));
     connect(ui->pushButtonConnectNodes,SIGNAL(clicked()),this, SLOT(connectNodes()));
+    connect(ui->pushButtonDisconnectNodes,SIGNAL(clicked()), this, SLOT(disconnectNodes()));
+    connect(ui->pushButtonClear, SIGNAL(clicked()), this, SLOT(clear()));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-//    for (unsigned int i = 0 ; i < my_nodes.size(); i++)
-//        delete my_nodes[i]
+
 }
 
 bool MainWindow::dispNodeInfo()
@@ -97,6 +100,12 @@ void MainWindow::refreshGUI()
     this->dispNodeInfo();
 }
 
+void MainWindow::clear()
+{
+        for (unsigned int i = 0 ; i < my_nodes.size(); i++)
+            delete my_nodes[i];
+}
+
 void MainWindow::connectNodes()
 {
     int srcid = fetchNodeId(ui->comboBoxSource->currentText());
@@ -120,14 +129,47 @@ void MainWindow::connectNodes()
     {
         ui->textBrowser->setText(QString::number(destid)+" falied to add input "+QString::number(srcid));
     }
+}
 
-    //reverse conn if failed later.
+void MainWindow::disconnectNodes()
+{
+    int srcid = fetchNodeId(ui->comboBoxSource->currentText());
+    int destid = fetchNodeId(ui->comboBoxDest->currentText());
+    qDebug() << "attempting to disconnect "<<QString::number(srcid)<<" to "<<QString::number(destid);
+
+    Node *src = getNode(srcid);
+    Node *dest = getNode(destid);
+
+    src->rem_output(dest);
+    dest->rem_input(src);
+}
+
+void MainWindow::deleteNode()
+{
+//    int nodeid = fetchNodeId(ui->comboBoxSource->currentText());
+
+//    qDebug() << "attempting to disconnect "<<QString::number(nodeid);
+
+//    Node *node = getNode(nodeid);
+//    for (int i = 0; i<node->m_inputs.size(); i++)
+//        node->m_inputs[i]->rem_output(node);
+//    for (int i = 0; i<node->m_outputs.size(); i++)
+//        node->m_outputs[i]->rem_input(node);
 }
 
 void MainWindow::addAnd()
 {
     nodeId++;
     my_nodes.push_back(new And(nodeId));
+    scene->addItem(my_nodes.back());
+    my_nodes.back()->print_info();
+    refreshGUI();
+}
+
+void MainWindow::addNand()
+{
+    nodeId++;
+    my_nodes.push_back(new Nand(nodeId));
     scene->addItem(my_nodes.back());
     my_nodes.back()->print_info();
     refreshGUI();
@@ -146,6 +188,15 @@ void MainWindow::addXor()
 {
     nodeId++;
     my_nodes.push_back(new Xor(nodeId));
+    scene->addItem(my_nodes.back());
+    my_nodes.back()->print_info();
+    refreshGUI();
+}
+
+void MainWindow::addOr()
+{
+    nodeId++;
+    my_nodes.push_back(new Or(nodeId));
     scene->addItem(my_nodes.back());
     my_nodes.back()->print_info();
     refreshGUI();
@@ -228,4 +279,3 @@ Node *MainWindow::getNode(const int &id)
     }
     return nullptr;
 }
-
