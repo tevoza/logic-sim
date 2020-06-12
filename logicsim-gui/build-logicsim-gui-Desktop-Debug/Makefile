@@ -56,15 +56,19 @@ SOURCES       = ../logicsim-gui/and.cpp \
 		../logicsim-gui/input.cpp \
 		../logicsim-gui/main.cpp \
 		../logicsim-gui/mainwindow.cpp \
+		../logicsim-gui/nand.cpp \
 		../logicsim-gui/net.cpp \
 		../logicsim-gui/node.cpp \
+		../logicsim-gui/or.cpp \
 		../logicsim-gui/xor.cpp moc_mainwindow.cpp
 OBJECTS       = and.o \
 		input.o \
 		main.o \
 		mainwindow.o \
+		nand.o \
 		net.o \
 		node.o \
+		or.o \
 		xor.o \
 		moc_mainwindow.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
@@ -259,14 +263,18 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		../logicsim-gui/logicsim-gui.pro ../logicsim-gui/and.h \
 		../logicsim-gui/input.h \
 		../logicsim-gui/mainwindow.h \
+		../logicsim-gui/nand.h \
 		../logicsim-gui/net.h \
 		../logicsim-gui/node.h \
+		../logicsim-gui/or.h \
 		../logicsim-gui/xor.h ../logicsim-gui/and.cpp \
 		../logicsim-gui/input.cpp \
 		../logicsim-gui/main.cpp \
 		../logicsim-gui/mainwindow.cpp \
+		../logicsim-gui/nand.cpp \
 		../logicsim-gui/net.cpp \
 		../logicsim-gui/node.cpp \
+		../logicsim-gui/or.cpp \
 		../logicsim-gui/xor.cpp
 QMAKE_TARGET  = logicsim-gui
 DESTDIR       = 
@@ -675,8 +683,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../logicsim-gui/and.h ../logicsim-gui/input.h ../logicsim-gui/mainwindow.h ../logicsim-gui/net.h ../logicsim-gui/node.h ../logicsim-gui/xor.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../logicsim-gui/and.cpp ../logicsim-gui/input.cpp ../logicsim-gui/main.cpp ../logicsim-gui/mainwindow.cpp ../logicsim-gui/net.cpp ../logicsim-gui/node.cpp ../logicsim-gui/xor.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../logicsim-gui/and.h ../logicsim-gui/input.h ../logicsim-gui/mainwindow.h ../logicsim-gui/nand.h ../logicsim-gui/net.h ../logicsim-gui/node.h ../logicsim-gui/or.h ../logicsim-gui/xor.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../logicsim-gui/and.cpp ../logicsim-gui/input.cpp ../logicsim-gui/main.cpp ../logicsim-gui/mainwindow.cpp ../logicsim-gui/nand.cpp ../logicsim-gui/net.cpp ../logicsim-gui/node.cpp ../logicsim-gui/or.cpp ../logicsim-gui/xor.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../logicsim-gui/mainwindow.ui $(DISTDIR)/
 
 
@@ -713,10 +721,13 @@ compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp
 moc_mainwindow.cpp: ../logicsim-gui/mainwindow.h \
-		../logicsim-gui/input.h \
+		../logicsim-gui/xor.h \
 		../logicsim-gui/node.h \
+		../logicsim-gui/input.h \
 		../logicsim-gui/net.h \
 		../logicsim-gui/and.h \
+		../logicsim-gui/nand.h \
+		../logicsim-gui/or.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include /home/adam/Projects/logic-sim/logicsim-gui/build-logicsim-gui-Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/adam/Projects/logic-sim/logicsim-gui/logicsim-gui -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I. -I/usr/include/c++/10.1.0 -I/usr/include/c++/10.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed -I/usr/include ../logicsim-gui/mainwindow.h -o moc_mainwindow.cpp
@@ -751,19 +762,29 @@ input.o: ../logicsim-gui/input.cpp ../logicsim-gui/input.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o input.o ../logicsim-gui/input.cpp
 
 main.o: ../logicsim-gui/main.cpp ../logicsim-gui/mainwindow.h \
-		../logicsim-gui/input.h \
+		../logicsim-gui/xor.h \
 		../logicsim-gui/node.h \
+		../logicsim-gui/input.h \
 		../logicsim-gui/net.h \
-		../logicsim-gui/and.h
+		../logicsim-gui/and.h \
+		../logicsim-gui/nand.h \
+		../logicsim-gui/or.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../logicsim-gui/main.cpp
 
 mainwindow.o: ../logicsim-gui/mainwindow.cpp ../logicsim-gui/mainwindow.h \
-		../logicsim-gui/input.h \
+		../logicsim-gui/xor.h \
 		../logicsim-gui/node.h \
+		../logicsim-gui/input.h \
 		../logicsim-gui/net.h \
 		../logicsim-gui/and.h \
+		../logicsim-gui/nand.h \
+		../logicsim-gui/or.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../logicsim-gui/mainwindow.cpp
+
+nand.o: ../logicsim-gui/nand.cpp ../logicsim-gui/nand.h \
+		../logicsim-gui/node.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nand.o ../logicsim-gui/nand.cpp
 
 net.o: ../logicsim-gui/net.cpp ../logicsim-gui/net.h \
 		../logicsim-gui/node.h
@@ -771,6 +792,10 @@ net.o: ../logicsim-gui/net.cpp ../logicsim-gui/net.h \
 
 node.o: ../logicsim-gui/node.cpp ../logicsim-gui/node.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o node.o ../logicsim-gui/node.cpp
+
+or.o: ../logicsim-gui/or.cpp ../logicsim-gui/or.h \
+		../logicsim-gui/node.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o or.o ../logicsim-gui/or.cpp
 
 xor.o: ../logicsim-gui/xor.cpp ../logicsim-gui/xor.h \
 		../logicsim-gui/node.h
