@@ -1,4 +1,5 @@
 #include "node.h"
+#include "nodeline.h"
 
 Node::Node()
 {
@@ -116,6 +117,7 @@ bool Node::add_output(Node *out_node)
     if (alreadySet == false)
     {
         m_outputs.push_back(out_node);
+        defineLine(out_node);
         return true;
     }
     else
@@ -123,6 +125,13 @@ bool Node::add_output(Node *out_node)
         std::cout<<"Error: Node already set"<<std::endl;
         return false;
     }
+
+}
+
+void Node::defineLine(Node *out_node)
+{
+    NodeLine *line = new NodeLine(this, out_node);
+    m_outputLines.push_back(line);
 }
 
 bool Node::rem_output(Node *out_node)
@@ -144,6 +153,10 @@ bool Node::rem_output(Node *out_node)
     if (nodeExists == true)
     {
         m_outputs.erase(m_outputs.begin()+nodeID);
+        m_outputLines.erase(m_outputLines.begin()+nodeID);
+        delete  m_outputLines[nodeID];
+        m_outputLines[nodeID] = nullptr;
+        m_outputLines.erase(std::remove(m_outputLines.begin(), m_outputLines.end(), nullptr), m_outputLines.end());
         return true;
     }
     else
@@ -254,6 +267,8 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     painter->drawRect(rec);
 }
 
+
+
 void Node::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     m_pressed = true;
@@ -265,5 +280,14 @@ void Node::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     m_pressed = false;
     update();
+    for (unsigned int i = 0; i < m_outputLines.size(); i++)
+    {
+        m_outputLines[i]->updateLine();
+    }
+    for (unsigned int i = 0; i < m_inputs.size(); i++)
+    {
+        for (unsigned int j = 0; j < m_inputs[i]->m_outputLines.size(); j++)
+            m_inputs[i]->m_outputLines[j]->updateLine();
+    }
     QGraphicsItem::mouseReleaseEvent(event);
 }

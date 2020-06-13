@@ -5,6 +5,7 @@
 #include "input.h"
 #include "net.h"
 #include "and.h"
+#include "nodeline.h"
 #include "nand.h"
 #include "or.h"
 #include <QMainWindow>
