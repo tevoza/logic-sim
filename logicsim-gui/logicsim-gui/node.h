@@ -1,10 +1,13 @@
 #ifndef NODE_H
 #define NODE_H
 
+//#include "nodeline.h"
 #include <iostream>
 #include <QPainter>
 #include <QGraphicsItem>
 #include <QDebug>
+
+class NodeLine;
 
 class Node : public QGraphicsItem
 {
@@ -22,6 +25,7 @@ public:
     std::string m_name;
     std::vector<Node*> m_outputs;
     std::vector<Node*> m_inputs;
+    std::vector<NodeLine*> m_outputLines;
 
     public:
     void set_name(const char* name);
@@ -49,6 +53,7 @@ public:
     bool m_pressed;
     QRectF boundingRect() const;//coords around obj
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);//draw object
+    void defineLine(Node *out_node);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

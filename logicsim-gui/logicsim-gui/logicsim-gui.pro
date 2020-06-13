@@ -23,6 +23,7 @@ SOURCES += \
     nand.cpp \
     net.cpp \
     node.cpp \
+    nodeline.cpp \
     or.cpp \
     xor.cpp
 
@@ -33,6 +34,7 @@ HEADERS += \
     nand.h \
     net.h \
     node.h \
+    nodeline.h \
     or.h \
     xor.h
 

@@ -123,7 +123,11 @@ void MainWindow::connectNodes()
             dest->rem_input(src);
         }
         else
+        {
             ui->textBrowser->setText(QString::number(srcid)+" successfully connected "+QString::number(destid));
+            //add lines to scene
+            scene->addItem(src->m_outputLines.back());
+        }
     }
     else
     {
