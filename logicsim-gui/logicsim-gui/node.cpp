@@ -8,6 +8,14 @@ Node::Node()
     setFlag(ItemIsMovable);
 }
 
+Node::~Node()
+{
+    for (unsigned int i=0; i < m_outputLines.size(); i++)
+    {
+        delete m_outputLines[i];
+    }
+}
+
 void Node::set_name(const char *name)
 {
     m_name = name;
@@ -153,8 +161,8 @@ bool Node::rem_output(Node *out_node)
     if (nodeExists == true)
     {
         m_outputs.erase(m_outputs.begin()+nodeID);
-        m_outputLines.erase(m_outputLines.begin()+nodeID);
-        delete  m_outputLines[nodeID];
+        //m_outputLines.erase(m_outputLines.begin()+nodeID);
+        delete m_outputLines[nodeID];
         m_outputLines[nodeID] = nullptr;
         m_outputLines.erase(std::remove(m_outputLines.begin(), m_outputLines.end(), nullptr), m_outputLines.end());
         return true;

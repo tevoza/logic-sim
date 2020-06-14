@@ -4,6 +4,7 @@
 #include <QGraphicsLineItem>
 #include "node.h"
 
+//class derived from QgraphicsLineItem for easier handling lines between nodes in the circuit.
 class NodeLine : public QGraphicsLineItem
 {
 private:

@@ -13,6 +13,7 @@ class Node : public QGraphicsItem
 {
 public:
     Node();
+    ~Node();
     enum class node_state {UNDEFINED, OFF, ON};
 
     private:

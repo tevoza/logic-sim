@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButtonConnectNodes,SIGNAL(clicked()),this, SLOT(connectNodes()));
     connect(ui->pushButtonDisconnectNodes,SIGNAL(clicked()), this, SLOT(disconnectNodes()));
     connect(ui->pushButtonClear, SIGNAL(clicked()), this, SLOT(clear()));
+    connect(ui->pushButtonDeleteNode, SIGNAL(clicked()), this, SLOT(deleteNode()));
 }
 
 MainWindow::~MainWindow()
@@ -102,8 +103,12 @@ void MainWindow::refreshGUI()
 
 void MainWindow::clear()
 {
-        for (unsigned int i = 0 ; i < my_nodes.size(); i++)
-            delete my_nodes[i];
+    for (unsigned int i = 0 ; i < my_nodes.size(); i++)
+    {
+        delete my_nodes[i];
+    }
+    my_nodes.clear();
+    ui->textBrowser->setText("Cleared circuit.");
 }
 
 void MainWindow::connectNodes()
@@ -150,15 +155,44 @@ void MainWindow::disconnectNodes()
 
 void MainWindow::deleteNode()
 {
-//    int nodeid = fetchNodeId(ui->comboBoxSource->currentText());
+    int nodeid = fetchNodeId(ui->comboBoxSource->currentText());
+    qDebug() << "attempting to disconnect "<<QString::number(nodeid);
 
-//    qDebug() << "attempting to disconnect "<<QString::number(nodeid);
+    Node *node = getNode(nodeid);   //clear inputs and outputs which point back to this node.
+    for (unsigned int i = 0; i<node->m_inputs.size(); i++)
+    {
+        node->m_inputs[i]->rem_output(node);
+    }
+    for (unsigned int i = 0; i<node->m_outputs.size(); i++)
+    {
+        node->m_outputs[i]->rem_input(node);
+    }
 
-//    Node *node = getNode(nodeid);
-//    for (int i = 0; i<node->m_inputs.size(); i++)
-//        node->m_inputs[i]->rem_output(node);
-//    for (int i = 0; i<node->m_outputs.size(); i++)
-//        node->m_outputs[i]->rem_input(node);
+    unsigned int vecid = 0; //find which vector id corresponds to given node id; very scruffy i know but im tired
+    bool found = false;
+    for(unsigned int i = 0; (i<my_nodes.size() && found == false); i++)
+    {
+        if (my_nodes[i] == node)
+        {
+            vecid = i;
+            found = true;
+        }
+    }
+
+    //delete from my_nodes
+    if (found == true)
+    {
+        delete my_nodes[vecid];
+        my_nodes[vecid] = nullptr;
+        my_nodes.erase(std::remove(my_nodes.begin(), my_nodes.end(), nullptr), my_nodes.end());
+        refreshGUI();
+        ui->textBrowser->setText("Removed node "+QString::number(nodeid)+" from circuit!");
+
+    }
+    else
+    {
+        ui->textBrowser->setText("Failed to remove "+QString::number(nodeid)+" from circuit!");
+    }
 }
 
 void MainWindow::addAnd()
@@ -251,7 +285,7 @@ void MainWindow::calc_circuit()
             q.front()->calc_state();
         }
 
-        for(int i = 0; i<q.front()->m_outputs.size(); i++) //add this nodes outputs to queue
+        for(unsigned int i = 0; i<q.front()->m_outputs.size(); i++) //add this nodes outputs to queue
         {
             q.push(q.front()->m_outputs[i]);
         }
