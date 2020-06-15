@@ -49,6 +49,9 @@ public:
     QPushButton *pushButtonAddNAND;
     QPushButton *pushButtonClear;
     QLabel *label_3;
+    QLabel *label_4;
+    QLabel *label_5;
+    QLabel *label_6;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -56,7 +59,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(839, 831);
+        MainWindow->resize(851, 878);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         pushButtonAddInput = new QPushButton(centralwidget);
@@ -73,45 +76,45 @@ public:
         pushButtonAddXOR->setGeometry(QRect(270, 0, 51, 32));
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-        graphicsView->setGeometry(QRect(0, 30, 831, 431));
+        graphicsView->setGeometry(QRect(0, 30, 831, 461));
         pushButtonClose = new QPushButton(centralwidget);
         pushButtonClose->setObjectName(QString::fromUtf8("pushButtonClose"));
         pushButtonClose->setGeometry(QRect(740, 0, 90, 32));
         comboBoxSource = new QComboBox(centralwidget);
         comboBoxSource->setObjectName(QString::fromUtf8("comboBoxSource"));
-        comboBoxSource->setGeometry(QRect(20, 480, 251, 41));
+        comboBoxSource->setGeometry(QRect(20, 540, 251, 41));
         pushButtonConnectNodes = new QPushButton(centralwidget);
         pushButtonConnectNodes->setObjectName(QString::fromUtf8("pushButtonConnectNodes"));
-        pushButtonConnectNodes->setGeometry(QRect(300, 470, 90, 32));
+        pushButtonConnectNodes->setGeometry(QRect(290, 540, 90, 32));
         comboBoxDest = new QComboBox(centralwidget);
         comboBoxDest->setObjectName(QString::fromUtf8("comboBoxDest"));
-        comboBoxDest->setGeometry(QRect(410, 480, 211, 41));
+        comboBoxDest->setGeometry(QRect(390, 550, 211, 41));
         pushButtonDisconnectNodes = new QPushButton(centralwidget);
         pushButtonDisconnectNodes->setObjectName(QString::fromUtf8("pushButtonDisconnectNodes"));
-        pushButtonDisconnectNodes->setGeometry(QRect(300, 500, 90, 32));
+        pushButtonDisconnectNodes->setGeometry(QRect(290, 570, 90, 32));
         lineEditName = new QLineEdit(centralwidget);
         lineEditName->setObjectName(QString::fromUtf8("lineEditName"));
-        lineEditName->setGeometry(QRect(110, 540, 113, 26));
+        lineEditName->setGeometry(QRect(90, 590, 113, 26));
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(30, 550, 57, 16));
+        label->setGeometry(QRect(20, 600, 57, 16));
         pushButtonSetName = new QPushButton(centralwidget);
         pushButtonSetName->setObjectName(QString::fromUtf8("pushButtonSetName"));
-        pushButtonSetName->setGeometry(QRect(230, 540, 41, 32));
+        pushButtonSetName->setGeometry(QRect(220, 590, 41, 32));
         textBrowser = new QTextBrowser(centralwidget);
         textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
-        textBrowser->setGeometry(QRect(20, 580, 256, 161));
+        textBrowser->setGeometry(QRect(20, 630, 256, 161));
         textBrowser->setReadOnly(true);
         pushButtonCalculateCircuit = new QPushButton(centralwidget);
         pushButtonCalculateCircuit->setObjectName(QString::fromUtf8("pushButtonCalculateCircuit"));
         pushButtonCalculateCircuit->setGeometry(QRect(510, 0, 131, 32));
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(300, 530, 361, 41));
+        label_2->setGeometry(QRect(360, 490, 361, 41));
         pushButtonDeleteNode = new QPushButton(centralwidget);
         pushButtonDeleteNode->setObjectName(QString::fromUtf8("pushButtonDeleteNode"));
-        pushButtonDeleteNode->setGeometry(QRect(20, 750, 251, 32));
-        pushButtonDeleteNode->setFlat(true);
+        pushButtonDeleteNode->setGeometry(QRect(20, 800, 251, 32));
+        pushButtonDeleteNode->setFlat(false);
         pushButtonAddOR = new QPushButton(centralwidget);
         pushButtonAddOR->setObjectName(QString::fromUtf8("pushButtonAddOR"));
         pushButtonAddOR->setGeometry(QRect(220, 0, 51, 32));
@@ -123,11 +126,20 @@ public:
         pushButtonClear->setGeometry(QRect(650, 0, 90, 32));
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(290, 610, 361, 41));
+        label_3->setGeometry(QRect(70, 500, 181, 41));
+        label_4 = new QLabel(centralwidget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setGeometry(QRect(340, 630, 361, 41));
+        label_5 = new QLabel(centralwidget);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setGeometry(QRect(340, 660, 361, 41));
+        label_6 = new QLabel(centralwidget);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setGeometry(QRect(340, 690, 361, 41));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 839, 28));
+        menubar->setGeometry(QRect(0, 0, 851, 28));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -165,12 +177,15 @@ public:
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; "
                         "margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         pushButtonCalculateCircuit->setText(QCoreApplication::translate("MainWindow", "CALCULATE CIRCUIT", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "^CONNECT/DISCONNECT LEFT NODE TO RIGHT(DIRECTED)", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "CONNECT/DISCONNECT LEFT NODE TO RIGHT(DIRECTED)", nullptr));
         pushButtonDeleteNode->setText(QCoreApplication::translate("MainWindow", "DELETE SELECTED NODE", nullptr));
         pushButtonAddOR->setText(QCoreApplication::translate("MainWindow", "OR", nullptr));
         pushButtonAddNAND->setText(QCoreApplication::translate("MainWindow", "NAND", nullptr));
         pushButtonClear->setText(QCoreApplication::translate("MainWindow", "Clear", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "^CONNECT/DISCONNECT LEFT NODE TO RIGHT(DIRECTED)", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "SELECT NODE", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "GENERAL INFO", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "BLACK => OFF, GREEN => ON, YELLOW => UNDEFINED", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "DOUBLE CLICK INPUTS TO TOGGLE STATE", nullptr));
     } // retranslateUi
 
 };

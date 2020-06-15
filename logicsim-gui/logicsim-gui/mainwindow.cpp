@@ -45,6 +45,7 @@ bool MainWindow::dispNodeInfo()
     }
     QString info = QString::fromStdString(node->print_info());
     ui->textBrowser->setPlainText(info);
+    ui->lineEditName->setText(QString::fromStdString(node->get_name()));
 }
 
 bool MainWindow::setNodeName()
@@ -159,6 +160,12 @@ void MainWindow::deleteNode()
     qDebug() << "attempting to disconnect "<<QString::number(nodeid);
 
     Node *node = getNode(nodeid);   //clear inputs and outputs which point back to this node.
+    if  (node == nullptr)
+    {
+        ui->textBrowser->setText("Failed to resolve given id "+QString::number(nodeid)+" in circuit!");
+        return;
+    }
+
     for (unsigned int i = 0; i<node->m_inputs.size(); i++)
     {
         node->m_inputs[i]->rem_output(node);
@@ -187,7 +194,6 @@ void MainWindow::deleteNode()
         my_nodes.erase(std::remove(my_nodes.begin(), my_nodes.end(), nullptr), my_nodes.end());
         refreshGUI();
         ui->textBrowser->setText("Removed node "+QString::number(nodeid)+" from circuit!");
-
     }
     else
     {
