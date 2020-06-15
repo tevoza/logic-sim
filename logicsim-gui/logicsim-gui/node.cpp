@@ -142,6 +142,22 @@ void Node::defineLine(Node *out_node)
     m_outputLines.push_back(line);
 }
 
+void Node::redrawLine()
+{
+    //update lines exiting this node.
+    for (unsigned int i = 0; i < m_outputLines.size(); i++)
+    {
+        m_outputLines[i]->updateLine();
+    }
+
+    //update lines enterring node
+    for (unsigned int i = 0; i < m_inputs.size(); i++)
+    {
+        for (unsigned int j = 0; j < m_inputs[i]->m_outputLines.size(); j++)
+            m_inputs[i]->m_outputLines[j]->updateLine();
+    }
+}
+
 bool Node::rem_output(Node *out_node)
 {
     bool nodeExists = false;
@@ -273,6 +289,7 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     painter->fillRect(rec,brush);
     painter->drawText(0,-8,info);
     painter->drawRect(rec);
+    redrawLine();
 }
 
 
@@ -288,14 +305,6 @@ void Node::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     m_pressed = false;
     update();
-    for (unsigned int i = 0; i < m_outputLines.size(); i++)
-    {
-        m_outputLines[i]->updateLine();
-    }
-    for (unsigned int i = 0; i < m_inputs.size(); i++)
-    {
-        for (unsigned int j = 0; j < m_inputs[i]->m_outputLines.size(); j++)
-            m_inputs[i]->m_outputLines[j]->updateLine();
-    }
+    redrawLine();
     QGraphicsItem::mouseReleaseEvent(event);
 }

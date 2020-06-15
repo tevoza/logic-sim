@@ -24,6 +24,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButtonDisconnectNodes,SIGNAL(clicked()), this, SLOT(disconnectNodes()));
     connect(ui->pushButtonClear, SIGNAL(clicked()), this, SLOT(clear()));
     connect(ui->pushButtonDeleteNode, SIGNAL(clicked()), this, SLOT(deleteNode()));
+    connect(ui->pushButtonTest, SIGNAL(clicked()),scene,SLOT(update()));
+    connect(scene, SIGNAL(changed(const QList<QRectF> &)),scene,SLOT(update()));
+
 }
 
 MainWindow::~MainWindow()
