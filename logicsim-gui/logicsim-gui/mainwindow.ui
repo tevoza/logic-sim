@@ -331,6 +331,19 @@ p, li { white-space: pre-wrap; }
      <string>DOUBLE CLICK INPUTS TO TOGGLE STATE</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButtonTest">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>570</y>
+      <width>90</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>update</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -353,8 +366,8 @@ p, li { white-space: pre-wrap; }
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>415</x>
-     <y>50</y>
+     <x>740</x>
+     <y>59</y>
     </hint>
     <hint type="destinationlabel">
      <x>506</x>

@@ -1,4 +1,4 @@
-#ifndef NODE_H
+﻿#ifndef NODE_H
 #define NODE_H
 
 //#include "nodeline.h"
@@ -55,6 +55,7 @@ public:
     QRectF boundingRect() const;//coords around obj
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);//draw object
     void defineLine(Node *out_node);
+    void redrawLine();
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

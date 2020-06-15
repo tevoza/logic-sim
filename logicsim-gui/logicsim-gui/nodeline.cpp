@@ -9,5 +9,5 @@ NodeLine::NodeLine(Node *in, Node *out)
 
 void NodeLine::updateLine()
 {
-    this->setLine(this->src->x(), this->src->y(), this->dest->x(), this->dest->y());
+    this->setLine(this->src->x()+100, this->src->y()+50, this->dest->x(), this->dest->y()+50);
 }

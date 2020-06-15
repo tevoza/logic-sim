@@ -52,6 +52,7 @@ public:
     QLabel *label_4;
     QLabel *label_5;
     QLabel *label_6;
+    QPushButton *pushButtonTest;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -136,6 +137,9 @@ public:
         label_6 = new QLabel(centralwidget);
         label_6->setObjectName(QString::fromUtf8("label_6"));
         label_6->setGeometry(QRect(340, 690, 361, 41));
+        pushButtonTest = new QPushButton(centralwidget);
+        pushButtonTest->setObjectName(QString::fromUtf8("pushButtonTest"));
+        pushButtonTest->setGeometry(QRect(700, 570, 90, 32));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -186,6 +190,7 @@ public:
         label_4->setText(QCoreApplication::translate("MainWindow", "GENERAL INFO", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "BLACK => OFF, GREEN => ON, YELLOW => UNDEFINED", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "DOUBLE CLICK INPUTS TO TOGGLE STATE", nullptr));
+        pushButtonTest->setText(QCoreApplication::translate("MainWindow", "update", nullptr));
     } // retranslateUi
 
 };
