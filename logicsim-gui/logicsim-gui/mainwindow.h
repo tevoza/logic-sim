@@ -2,12 +2,14 @@
 #define MAINWINDOW_H
 
 #include "xor.h"
+#include "nor.h"
 #include "input.h"
 #include "net.h"
 #include "and.h"
 #include "nodeline.h"
 #include "nand.h"
 #include "or.h"
+#include "nor.h"
 #include <QMainWindow>
 #include <QtCore>
 #include <QtGui>
@@ -40,6 +42,7 @@ public:
     void addNet();
     void addXor();
     void addOr();
+    void addNor();
     void addInput();
     void calc_circuit();
 

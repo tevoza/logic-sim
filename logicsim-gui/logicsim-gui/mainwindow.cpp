@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButtonAddXOR, SIGNAL(clicked()), this, SLOT(addXor()));
     connect(ui->pushButtonAddOR, SIGNAL(clicked()), this, SLOT(addOr()));
     connect(ui->pushButtonAddNAND, SIGNAL(clicked()), this, SLOT(addNand()));
+    connect(ui->pushButtonAddNOR, SIGNAL(clicked()), this, SLOT(addNor()));
 
     connect(ui->pushButtonCalculateCircuit,SIGNAL(clicked()),this,SLOT(calc_circuit()));
     connect(ui->pushButtonSetName,SIGNAL(clicked()), this, SLOT(setNodeName()));
@@ -113,6 +114,7 @@ void MainWindow::clear()
     }
     my_nodes.clear();
     ui->textBrowser->setText("Cleared circuit.");
+    nodeId = 0;
 }
 
 void MainWindow::connectNodes()
@@ -244,6 +246,15 @@ void MainWindow::addOr()
 {
     nodeId++;
     my_nodes.push_back(new Or(nodeId));
+    scene->addItem(my_nodes.back());
+    my_nodes.back()->print_info();
+    refreshGUI();
+}
+
+void MainWindow::addNor()
+{
+    nodeId++;
+    my_nodes.push_back(new Nor(nodeId));
     scene->addItem(my_nodes.back());
     my_nodes.back()->print_info();
     refreshGUI();

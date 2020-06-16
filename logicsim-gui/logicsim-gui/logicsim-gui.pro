@@ -24,6 +24,7 @@ SOURCES += \
     net.cpp \
     node.cpp \
     nodeline.cpp \
+    nor.cpp \
     or.cpp \
     xor.cpp
 
@@ -35,6 +36,7 @@ HEADERS += \
     net.h \
     node.h \
     nodeline.h \
+    nor.h \
     or.h \
     xor.h
 

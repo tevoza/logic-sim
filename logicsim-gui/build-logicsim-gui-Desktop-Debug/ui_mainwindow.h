@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.2
+** Created by: Qt User Interface Compiler version 5.15.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -53,6 +53,7 @@ public:
     QLabel *label_5;
     QLabel *label_6;
     QPushButton *pushButtonTest;
+    QPushButton *pushButtonAddNOR;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -74,7 +75,7 @@ public:
         pushButtonAddAND->setGeometry(QRect(120, 0, 51, 32));
         pushButtonAddXOR = new QPushButton(centralwidget);
         pushButtonAddXOR->setObjectName(QString::fromUtf8("pushButtonAddXOR"));
-        pushButtonAddXOR->setGeometry(QRect(270, 0, 51, 32));
+        pushButtonAddXOR->setGeometry(QRect(320, 0, 51, 32));
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         graphicsView->setGeometry(QRect(0, 30, 831, 461));
@@ -140,6 +141,9 @@ public:
         pushButtonTest = new QPushButton(centralwidget);
         pushButtonTest->setObjectName(QString::fromUtf8("pushButtonTest"));
         pushButtonTest->setGeometry(QRect(700, 570, 90, 32));
+        pushButtonAddNOR = new QPushButton(centralwidget);
+        pushButtonAddNOR->setObjectName(QString::fromUtf8("pushButtonAddNOR"));
+        pushButtonAddNOR->setGeometry(QRect(270, 0, 51, 32));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -191,6 +195,7 @@ public:
         label_5->setText(QCoreApplication::translate("MainWindow", "BLACK => OFF, GREEN => ON, YELLOW => UNDEFINED", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "DOUBLE CLICK INPUTS TO TOGGLE STATE", nullptr));
         pushButtonTest->setText(QCoreApplication::translate("MainWindow", "update", nullptr));
+        pushButtonAddNOR->setText(QCoreApplication::translate("MainWindow", "NOR", nullptr));
     } // retranslateUi
 
 };
