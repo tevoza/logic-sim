@@ -17,7 +17,7 @@ bool Nand::calc_state()
         return true;
     }
 
-    int high = 0;
+    unsigned int high = 0;
 
     for (int unsigned i = 0;i<m_inputs.size(); i++ )
     {
