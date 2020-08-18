@@ -12,6 +12,7 @@ int main()
     Adder.add_net("NET_B");
     Adder.add_and("AND_CarryOut");
     Adder.add_xor("XOR_Sum");
+    Adder.add_xor("XOR_HI");
 
     Adder.connect_nodes(Adder.get_node("IN_A"), Adder.get_node("NET_A"));
     Adder.connect_nodes(Adder.get_node("IN_B"), Adder.get_node("NET_B"));
