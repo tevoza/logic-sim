@@ -1,6 +1,11 @@
 #include <iostream>
 #include "circuit.h"
 
+Circuit::Circuit(const char* name)
+{
+    m_name = name;
+}
+
 bool Circuit::add_input(const char* name, Node::node_state state)
 {
     Input* input = new Input();
@@ -88,7 +93,7 @@ Node* Circuit::get_node(const char* name)
     else
     {
         return res;
-    }    
+    }
 }
 
 bool Circuit::list_nodes()

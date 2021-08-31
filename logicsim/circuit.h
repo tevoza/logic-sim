@@ -14,8 +14,10 @@ class Circuit
     private:
     std::vector<Node*> m_nodes;
     int m_nodeCount = 0;
-
+    std::string m_name;
+        
     public:
+    Circuit(const char* name);
     bool add_input(const char* name, Node::node_state state);
     bool add_net(const char* name);
     bool add_and(const char* name);
